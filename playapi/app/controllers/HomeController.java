@@ -17,6 +17,7 @@ import views.html.index;
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
  */
+
 public class HomeController extends Controller {
 
     /**
@@ -33,6 +34,19 @@ public class HomeController extends Controller {
         for(Product product:list)
             System.out.println(product.toString());
         return ok("products shown");
+    }
+
+    public Result getProduct(int id){
+        Product product=productService.getProductCache(id);
+        if(product!=null){
+            System.out.println(product.toString());
+        }
+        else{
+            product=productService.getProduct(id);
+            System.out.println(product.toString());
+            productService.putProduct(product.getId(),product);
+        }
+        return ok("product returned");
     }
 
     public Result post(int id,String productName,String category,String productCity,String productState,String ownerName){

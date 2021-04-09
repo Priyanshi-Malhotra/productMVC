@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/priyanshi/Desktop/playAPI/playapi/conf/routes
-// @DATE:Tue Mar 30 13:28:56 IST 2021
+// @DATE:Thu Apr 01 15:53:52 IST 2021
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -19,7 +19,17 @@ package controllers.javascript {
     }
 
   
-    // @LINE:15
+    // @LINE:13
+    def getProduct: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.HomeController.getProduct",
+      """
+        function(id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "product/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Integer]].javascriptUnbind + """)("id", id0))})
+        }
+      """
+    )
+  
+    // @LINE:17
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.delete",
       """
@@ -29,7 +39,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:13
+    // @LINE:15
     def post: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.HomeController.post",
       """

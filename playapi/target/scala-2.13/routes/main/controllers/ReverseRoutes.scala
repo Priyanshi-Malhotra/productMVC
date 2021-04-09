@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/priyanshi/Desktop/playAPI/playapi/conf/routes
-// @DATE:Tue Mar 30 13:28:56 IST 2021
+// @DATE:Thu Apr 01 15:53:52 IST 2021
 
 import play.api.mvc.Call
 
@@ -18,13 +18,19 @@ package controllers {
     }
 
   
-    // @LINE:15
+    // @LINE:13
+    def getProduct(id:Integer): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "product/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)))
+    }
+  
+    // @LINE:17
     def delete(id:Integer): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "delete/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)))
     }
   
-    // @LINE:13
+    // @LINE:15
     def post(id:Integer, productName:String, category:String, productCity:String, productState:String, ownerName:String): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "product/add/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Integer]].unbind("id", id)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("productName", productName)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("category", category)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("productCity", productCity)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("productState", productState)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("ownerName", ownerName)))

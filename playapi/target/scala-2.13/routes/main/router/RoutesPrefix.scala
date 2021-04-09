@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/priyanshi/Desktop/playAPI/playapi/conf/routes
-// @DATE:Tue Mar 30 13:28:56 IST 2021
+// @DATE:Thu Apr 01 15:53:52 IST 2021
 
 
 package router {

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/priyanshi/Desktop/playAPI/playapi/conf/routes
-// @DATE:Tue Mar 30 13:28:56 IST 2021
+// @DATE:Thu Apr 01 15:53:52 IST 2021
 
 package router
 
@@ -42,6 +42,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """products""", """controllers.HomeController.index()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """product/""" + "$" + """id<[^/]+>""", """controllers.HomeController.getProduct(id:Integer)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """product/add/""" + "$" + """id<[^/]+>/""" + "$" + """productName<[^/]+>/""" + "$" + """category<[^/]+>/""" + "$" + """productCity<[^/]+>/""" + "$" + """productState<[^/]+>/""" + "$" + """ownerName<[^/]+>""", """controllers.HomeController.post(id:Integer, productName:String, category:String, productCity:String, productState:String, ownerName:String)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """delete/""" + "$" + """id<[^/]+>""", """controllers.HomeController.delete(id:Integer)"""),
     Nil
@@ -88,10 +89,28 @@ class Routes(
   )
 
   // @LINE:13
-  private[this] lazy val controllers_HomeController_post2_route = Route("POST",
+  private[this] lazy val controllers_HomeController_getProduct2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("product/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_HomeController_getProduct2_invoker = createInvoker(
+    HomeController_1.getProduct(fakeValue[Integer]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.HomeController",
+      "getProduct",
+      Seq(classOf[Integer]),
+      "GET",
+      this.prefix + """product/""" + "$" + """id<[^/]+>""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:15
+  private[this] lazy val controllers_HomeController_post3_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("product/add/"), DynamicPart("id", """[^/]+""",true), StaticPart("/"), DynamicPart("productName", """[^/]+""",true), StaticPart("/"), DynamicPart("category", """[^/]+""",true), StaticPart("/"), DynamicPart("productCity", """[^/]+""",true), StaticPart("/"), DynamicPart("productState", """[^/]+""",true), StaticPart("/"), DynamicPart("ownerName", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_post2_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_post3_invoker = createInvoker(
     HomeController_1.post(fakeValue[Integer], fakeValue[String], fakeValue[String], fakeValue[String], fakeValue[String], fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -105,11 +124,11 @@ class Routes(
     )
   )
 
-  // @LINE:15
-  private[this] lazy val controllers_HomeController_delete3_route = Route("DELETE",
+  // @LINE:17
+  private[this] lazy val controllers_HomeController_delete4_route = Route("DELETE",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("delete/"), DynamicPart("id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_HomeController_delete3_invoker = createInvoker(
+  private[this] lazy val controllers_HomeController_delete4_invoker = createInvoker(
     HomeController_1.delete(fakeValue[Integer]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -139,15 +158,21 @@ class Routes(
       }
   
     // @LINE:13
-    case controllers_HomeController_post2_route(params@_) =>
-      call(params.fromPath[Integer]("id", None), params.fromPath[String]("productName", None), params.fromPath[String]("category", None), params.fromPath[String]("productCity", None), params.fromPath[String]("productState", None), params.fromPath[String]("ownerName", None)) { (id, productName, category, productCity, productState, ownerName) =>
-        controllers_HomeController_post2_invoker.call(HomeController_1.post(id, productName, category, productCity, productState, ownerName))
+    case controllers_HomeController_getProduct2_route(params@_) =>
+      call(params.fromPath[Integer]("id", None)) { (id) =>
+        controllers_HomeController_getProduct2_invoker.call(HomeController_1.getProduct(id))
       }
   
     // @LINE:15
-    case controllers_HomeController_delete3_route(params@_) =>
+    case controllers_HomeController_post3_route(params@_) =>
+      call(params.fromPath[Integer]("id", None), params.fromPath[String]("productName", None), params.fromPath[String]("category", None), params.fromPath[String]("productCity", None), params.fromPath[String]("productState", None), params.fromPath[String]("ownerName", None)) { (id, productName, category, productCity, productState, ownerName) =>
+        controllers_HomeController_post3_invoker.call(HomeController_1.post(id, productName, category, productCity, productState, ownerName))
+      }
+  
+    // @LINE:17
+    case controllers_HomeController_delete4_route(params@_) =>
       call(params.fromPath[Integer]("id", None)) { (id) =>
-        controllers_HomeController_delete3_invoker.call(HomeController_1.delete(id))
+        controllers_HomeController_delete4_invoker.call(HomeController_1.delete(id))
       }
   }
 }

@@ -10,6 +10,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /products                   controllers.HomeController.index()
 
+GET     /product/:id                controllers.HomeController.getProduct(id: Integer)
+
 POST    /product/add/:id/:productName/:category/:productCity/:productState/:ownerName    controllers.HomeController.post(id: Integer,productName: String,category: String,productCity: String,productState: String,ownerName: String)
 
 DELETE  /delete/:id         controllers.HomeController.delete(id: Integer)

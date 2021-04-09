@@ -1,0 +1,5 @@
+compile
+run
+javac RedisJava
+javac RedisJava.java
+javac RedisJava
